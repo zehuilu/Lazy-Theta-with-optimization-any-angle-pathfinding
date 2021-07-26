@@ -92,11 +92,11 @@ public:
                 return false;
             if((double) diff.y / diff.x > (double) 1 / 3)
             {
-            if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
-                return false;
-            if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
-                return false;
-		    }
+                if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
+                    return false;
+                if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
+                    return false;
+            }
             while(l1.x != l2.x)
             {	//(int) ly will change to next integer when line of sight cross the boundary of cell
                 if(!mIsTraversable(l1))
