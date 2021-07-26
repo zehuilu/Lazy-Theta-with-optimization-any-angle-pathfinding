@@ -95,11 +95,15 @@ public:
         nodes[startId].parent = startId;
 
         addToOpen(startId);
+        // cross_wall will become false when all nodes are generate till end-point
+        // and all node valid in lineOfSight.
+        bool cross_wall = true; 
 
-        while(!openList.empty() && nodes[endId].g > getMin().f + EPSILON)
+        while(!openList.empty() && cross_wall)
         {
             NodeId currId = getMin().id;
             popMin();
+            
 
             // Lazy Theta* assumes that there is always line-of-sight from the parent of an expanded state to a successor state.
             // When expanding a state, check if this is true.
@@ -146,6 +150,9 @@ public:
                     }
                 }
             }
+            // check if endId.parent, endId valid in lineOfSight
+            if(currId == endId && adaptor.lineOfSight(nodes[currId].parent, currId))
+                cross_wall = false;
         }
 
         std::vector<int> path;
