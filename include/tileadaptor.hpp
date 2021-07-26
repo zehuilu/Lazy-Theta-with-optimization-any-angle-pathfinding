@@ -86,54 +86,54 @@ public:
         { // Move along the x axis and increment/decrement y.
             // A few special cases **some how not working**
             // If there is a block near start/goal, it might be ignored
-			if(!mIsTraversable({l1.x + dir.x, l1.y}))
+            if(!mIsTraversable({l1.x + dir.x, l1.y}))
                 return false;
-			if(!mIsTraversable({l2.x - dir.x, l2.y}))
+            if(!mIsTraversable({l2.x - dir.x, l2.y}))
                 return false;
             if((double) diff.y / diff.x > (double) 1 / 3)
             {
-            	if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
-		            return false;
-				if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
-		            return false;
+            if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
+                return false;
+            if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
+                return false;
 		    }
             while(l1.x != l2.x)
             {	//(int) ly will change to next integer when line of sight cross the boundary of cell
-				if(!mIsTraversable(l1))
-					return false;
-				if((int) ly != l1.y)
-				{
-					l1.y += dir.y;
-					if(!mIsTraversable(l1))
-						return false;
-				}
+                if(!mIsTraversable(l1))
+                    return false;
+                if((int) ly != l1.y)
+                {
+                    l1.y += dir.y;
+                    if(!mIsTraversable(l1))
+	                    return false;
+                }
                 l1.x += dir.x;
                 ly += (float) diff.y / diff.x * dir.y;
             }
         }
         else
         {  //if (diff.x < diff.y). Move along the y axis and increment/decrement x.
-			if(!mIsTraversable({l1.x, l1.y + dir.y}))
+            if(!mIsTraversable({l1.x, l1.y + dir.y}))
                 return false;
-			if(!mIsTraversable({l2.x, l2.y - dir.y}))
+            if(!mIsTraversable({l2.x, l2.y - dir.y}))
                 return false;
             if((double) diff.x / diff.y > (double) 1 / 3)
             {
-            	if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
-		            return false;
-				if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
-		            return false;
-		    }
+                if(!mIsTraversable({l1.x + dir.x, l1.y + dir.y}))
+                    return false;
+                if(!mIsTraversable({l2.x - dir.x, l2.y - dir.y}))
+                    return false;
+            }
             while (l1.y != l2.y)
             {
-				if(!mIsTraversable(l1))
-					return false;
-				if((int) lx != l1.x)
-				{
-					l1.x += dir.x;
-					if(!mIsTraversable(l1))
-						return false;
-				}
+                if(!mIsTraversable(l1))
+                    return false;
+                if((int) lx != l1.x)
+                {
+                    l1.x += dir.x;
+                    if(!mIsTraversable(l1))
+                    return false;
+                }
                 l1.y += dir.y;
                 lx += (float) diff.x / diff.y * dir.x;   
             }
