@@ -5,6 +5,7 @@ This is a customized version of Lazy-Theta-with-optimization-any-angle-pathfindi
 This repo has been tested with:
 * GCC 10.2.0, CMake 3.16.3, Ubuntu 20.04.2 LTS
 * GCC 9.3.0, CMake 3.16.3, Ubuntu 20.04.1 LTS
+* Clang 15.0.0, CMake 3.27.7, macOS 13.6.6
 * Clang 12.0.0, CMake 3.18.3, macOS 10.15.7
 * Clang 12.0.0, CMake 3.19.3, macOS 11.1
 
@@ -18,16 +19,37 @@ For Python:
 
 Build
 =====
-```
+```bash
+$ sudo apt install gcc g++ cmake libtbb-dev # For macOS: brew install tbb
 $ sudo apt install python3-pybind11 # For macOS: brew install pybind11
+
+
 $ pip3 install numpy matplotlib
 $ git clone https://github.com/zehuilu/Lazy-Theta-with-optimization-any-angle-pathfinding.git
 $ cd <MAIN_DIRECTORY>
-$ mkdir build
 $ cd build
 $ cmake .. -DPYTHON_EXECUTABLE=$(which python3)
 $ make
 ```
+
+
+If you want to use [conda](https://docs.conda.io/projects/conda/en/latest/index.html) to manage environment:
+```bash
+$ conda create --name lazy python numpy matplotlib
+$ conda activate lazy
+$ conda install conda-forge::pybind11
+
+$ git clone https://github.com/zehuilu/astar-algorithm-cpp.git
+$ cd <MAIN_DIRECTORY>
+$ cd build
+$ cmake ..  # For debug mode, run: cmake .. -DCMAKE_BUILD_TYPE=Debug
+$ make
+```
+
+Note: If you are using conda, make sure you are in the right env `lazy` before you use cmake and make to compile.
+Otherwise, conda will link to the Python associated with the base environment or other environments, which are wrong.
+
+
 
 
 Usage
@@ -50,6 +72,14 @@ Or `test/test_solver_and_plot.py`.
 $ cd <MAIN_DIRECTORY>
 $ python3 test/test_solver_and_plot.py
 ```
+
+For Python, to run `LazyThetaStarPython.FindPathMany()` with Intel TBB (multi-threading), see `example/run_FindPathAllTBB.py`.
+The function `LazyThetaStarPython.FindPathManyTBB()` is used in line 36, and the usage is the same as `LazyThetaStarPython.FindPathMany()`.
+```
+$ cd <MAIN_DIRECTORY>
+$ python3 example/run_FindPathAllTBB.py
+```
+
 
 Example
 =======
