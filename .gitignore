@@ -2,4 +2,5 @@
 *.DS_Store
 /.vscode/*
 /build/*
+!/build/.gitkeep
 /src/__pycache__/*
