@@ -46,10 +46,10 @@ inline std::tuple<std::vector<std::vector<int>>, std::vector<float>> FindPathMan
     // That means we may need to manually set num_threads as 2*8 = 16.
 
     // TBB arena: use all cores
-    tbb::task_arena arena(tbb::task_arena::automatic);
+    // tbb::task_arena arena(tbb::task_arena::automatic);
 
     // use all performance cores for Intel® Core™ i7-13700
-    // tbb::task_arena arena(16);
+    tbb::task_arena arena(16);
 
     // std::cout << "num_threads (tbb::task_arena::automatic): " << arena.max_concurrency() << std::endl;
 

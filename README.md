@@ -3,6 +3,7 @@ This is a customized version of Lazy-Theta-with-optimization-any-angle-pathfindi
 
 
 This repo has been tested with:
+* GCC 13.3.0, CMake 3.28.3, Ubuntu 24.04.3 LTS
 * GCC 10.2.0, CMake 3.16.3, Ubuntu 20.04.2 LTS
 * GCC 9.3.0, CMake 3.16.3, Ubuntu 20.04.1 LTS
 * Clang 15.0.0, CMake 3.27.7, macOS 13.6.6
